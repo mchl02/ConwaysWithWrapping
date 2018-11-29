@@ -30,51 +30,29 @@ class Colony: CustomStringConvertible {
     }
     
     func surrounding(xCoor: Int, yCoor: Int) -> Set<Coor>{
-        var neighborCells: Set<Coor> = [
-            Coor(xCoor - 1, yCoor - 1),
-            Coor(xCoor + 1, yCoor + 1),
-            Coor(xCoor + 1, yCoor),
-            Coor(xCoor, yCoor + 1),
-            Coor(xCoor - 1,yCoor + 1),
-            Coor(xCoor + 1,yCoor - 1),
-            Coor(xCoor,yCoor - 1),
-            Coor(xCoor - 1,yCoor)]
-        if 1==1{
-            for i in neighborCells{
-                if i.row < 0 {
-                    if i.column < 0{
-                        neighborCells.insert(Coor(colonySize - 1, colonySize - 1))
-                        neighborCells.remove(i)
-                    }
-                    else if i.column >= colonySize{
-                        neighborCells.insert(Coor(colonySize - 1, 0))
-                        neighborCells.remove(i)
-                    }
-                    else{
-                        neighborCells.insert(Coor(colonySize - 1, i.column))
-                        
-                        neighborCells.remove(i)
-                    }
-                }
-                
-                if i.row >= colonySize{
-                    if i.column < 0{
-                        neighborCells.insert(Coor(0, colonySize - 1))
-                        neighborCells.remove(i)
-                    }
-                    else if i.column >= colonySize{
-                        neighborCells.insert(Coor(0, 0))
-                        neighborCells.remove(i)
-                    }
-                    else{
-                        
-                        neighborCells.insert(Coor(0,i.column))
-                        neighborCells.remove(i)
-                    }
-                }
-            }
+        var neighbor = Set<Coor>()
+       
+        
+        if true{
+            neighbor.insert(Coor((xCoor-1+colonySize)%colonySize, (yCoor-1+colonySize)%colonySize))
+            neighbor.insert(Coor(xCoor, (yCoor-1+colonySize)%colonySize))
+            neighbor.insert(Coor((xCoor+1+colonySize)%colonySize, (yCoor-1+colonySize)%colonySize))
+            neighbor.insert(Coor((xCoor-1+colonySize)%colonySize, yCoor))
+            neighbor.insert(Coor((xCoor+1+colonySize)%colonySize, yCoor))
+            neighbor.insert(Coor((xCoor-1+colonySize)%colonySize, (yCoor+1+colonySize)%colonySize))
+            neighbor.insert(Coor(xCoor, (yCoor+1+colonySize)%colonySize))
+            neighbor.insert(Coor((xCoor+1+colonySize)%colonySize, (yCoor+1+colonySize)%colonySize))
+            return neighbor
         }
-        return neighborCells
+        neighbor.insert(Coor(xCoor-1, yCoor-1))
+        neighbor.insert(Coor(xCoor, yCoor-1))
+        neighbor.insert(Coor(xCoor+1, yCoor-1))
+        neighbor.insert(Coor(xCoor-1, yCoor))
+        neighbor.insert(Coor(xCoor+1, yCoor))
+        neighbor.insert(Coor(xCoor-1, yCoor+1))
+        neighbor.insert(Coor(xCoor, yCoor+1))
+        neighbor.insert(Coor(xCoor+1, yCoor+1))
+        return neighbor
     }
     
     func neighboringCount(_ x: Int, _ y: Int) -> Int {
